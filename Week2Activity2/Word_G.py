@@ -17,6 +17,7 @@ class word_generator:
             "computer",
             "research",
             "analytics",
+            "boom"
         ]
 
     def get_random_word(self):
