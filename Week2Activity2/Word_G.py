@@ -1,6 +1,11 @@
 import random
 import string
+from pathlib import Path
 
+BASE_DIR = Path(__file__).parent
+text_file = BASE_DIR / "flying_guy.txt"
+
+flying_guy = text_file.read_text(encoding="utf-8")
 
 class word_generator:
     def __init__(
@@ -17,7 +22,7 @@ class word_generator:
             "computer",
             "research",
             "analytics",
-            "boom"
+            "boom",
         ]
 
     def get_random_word(self):
@@ -74,6 +79,8 @@ class word_guessing_game:
                 print("\n Out of lives & Sad story!")
                 print(f"The word was: {secret_word}")
                 print("YOU LOST")
+                print(flying_guy)
+                print("KABOOM!")
                 return True
 
     def play_game(self):
@@ -90,10 +97,12 @@ class word_guessing_game:
     def all_blanks_filled(self, blanks):
         return "_" not in blanks
 
+
 def play_game(max_lives=6):
     generator = word_generator()
     guess_the_word_game = word_guessing_game(generator, max_lives)
     guess_the_word_game.play_game()
+
 
 if __name__ == "__main__":
     play_game()
