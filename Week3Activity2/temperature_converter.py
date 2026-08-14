@@ -10,10 +10,9 @@ def init():
     print("Total number of lines: " + str(len(junk_text.splitlines())))
 
     junk_text += "text file nanalyssis"
-    junk_text = junk_text.upper()
 
     new_text_file = BASE_DIR / "junk2.txt"
-    new_text_file.write_text(junk_text, encoding="utf-8")
+    new_text_file.write_text(junk_text.upper(), encoding="utf-8")
 
 
 if __name__ == "__main__":
