@@ -1,5 +1,6 @@
-import mysql.connector
 import random
+
+import mysql.connector
 from faker import Faker
 
 fake = Faker()
@@ -222,13 +223,7 @@ def create_student_enrollments(conn, student_ids, enrollment_ids):
     cursor.close()
 
 
-def create_lectures(
-    conn,
-    enrollment_ids,
-    lecturer_ids,
-    subject_ids,
-    count
-):
+def create_lectures(conn, enrollment_ids, lecturer_ids, subject_ids, count):
     cursor = conn.cursor()
 
     query = """
@@ -337,14 +332,23 @@ def main():
 
         print("Created lectures")
 
-        for enrollment_id, enrollment_name, student_count in find_student_count_by_enrollment(conn):
+        for (
+            enrollment_id,
+            enrollment_name,
+            student_count,
+        ) in find_student_count_by_enrollment(conn):
             print(
                 f"Course ID: {enrollment_id}, "
                 f"course name: {enrollment_name}, "
                 f"students: {student_count}"
             )
 
-        for student_id, first_name, last_name, enrollment_count in find_students_with_multiple_enrollments(conn):
+        for (
+            student_id,
+            first_name,
+            last_name,
+            enrollment_count,
+        ) in find_students_with_multiple_enrollments(conn):
             print(
                 f"Student ID: {student_id}, "
                 f"student: {first_name} {last_name}, "
